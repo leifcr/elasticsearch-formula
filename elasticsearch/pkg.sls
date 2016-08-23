@@ -1,10 +1,10 @@
 include:
   - elasticsearch.repo
 
-{% from "elasticsearch/map.jinja" import elasticsearch with context %}
-
 elasticsearch_pkg:
   pkg.installed:
-    - name: {{ elasticsearch.lookup.pkg }}
+    pkgs:
+      - elasticsearch
+      - openjdk-8-jre
     - require:
       - sls: elasticsearch.repo
