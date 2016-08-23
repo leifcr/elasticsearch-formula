@@ -39,6 +39,16 @@ node.rack: {{ elasticsearch.config['node.rack'] }}
 {%- else %}
 # node.rack: r1
 {%- endif %}
+
+#
+# Master setting
+#
+{%- if elasticsearch.config['node.master'] is defined %}
+node.master: {{ elasticsearch.config['node.master'] }}
+{%- else %}
+# node.master: true # Defaults to true
+{%- endif %}
+
 #
 # ----------------------------------- Paths ------------------------------------
 #
@@ -146,3 +156,19 @@ action.destructive_requires_name: {{ elasticsearch.config['action.destructive_re
 {%- else %}
 # action.destructive_requires_name: true
 {%- endif %}
+
+#
+# Number of replicas and shards
+#
+{%- if elasticsearch.config['index.number_of_shards'] is defined %}
+index.number_of_shards: {{ elasticsearch.config['index.number_of_shards'] }}
+{%- else %}
+# index.number_of_shards: 5 # Default value is 5
+{%- endif %}
+
+{%- if elasticsearch.config['index.number_of_replicas'] is defined %}
+index.number_of_replicas: {{ elasticsearch.config['index.number_of_replicas'] }}
+{%- else %}
+# index.number_of_replicas: 1 # Default value is 1
+{%- endif %}
+
