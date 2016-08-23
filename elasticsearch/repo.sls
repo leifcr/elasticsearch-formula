@@ -1,6 +1,6 @@
 elasticsearch_repo:
   pkgrepo.managed:
-    - humanname: Elasticsearch 2.
+    - humanname: Elasticsearch 2.x Stable
     {% if grains.get('os_family') == 'Debian' %}
     - name: deb http://packages.elastic.co/elasticsearch/2.x/debian stable main
     - dist: stable
