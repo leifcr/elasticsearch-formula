@@ -3,7 +3,7 @@ include:
 
 elasticsearch_pkg:
   pkg.installed:
-    pkgs:
+    - pkgs:
       - elasticsearch
       - openjdk-8-jre
     - require:
