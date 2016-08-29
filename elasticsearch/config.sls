@@ -6,7 +6,9 @@ elasticsearch_cfg:
     - name: /etc/elasticsearch/elasticsearch.yml
     - source: salt://elasticsearch/files/elasticsearch.yml
     - template: jinja
+    - mode: 750
     - user: root
+    - group: elasticsearch
     - require:
       - sls: elasticsearch.pkg
 
