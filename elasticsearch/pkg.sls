@@ -4,7 +4,7 @@
 include:
   - elasticsearch.repo
 
-openjdk_pkg:
+openjdk8_pkg:
   pkg.installed:
     -name: openjdk-8-jre
 
@@ -16,4 +16,4 @@ elasticsearch_pkg:
     {% endif %}
     - require:
       - sls: elasticsearch.repo
-      - pkg: openjdk_pkg
+      - pkg: openjdk8_pkg
