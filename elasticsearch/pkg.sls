@@ -6,7 +6,7 @@ include:
 
 openjdk8_pkg:
   pkg.installed:
-    -name: openjdk-8-jre
+    - name: openjdk-8-jre
 
 elasticsearch_pkg:
   pkg.installed:
