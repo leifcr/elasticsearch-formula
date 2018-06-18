@@ -1,13 +1,9 @@
-{% set elasticsearch = salt['pillar.get']('elasticsearch', {
-    'lookup': salt['grains.filter_by']({
-        'Debian': {
-            'elasticsearch_pkg': 'elasticsearch',
-            'java_pkg': 'openjdk-8-jre'
-        },
-        'RedHat': {
-            'elasticsearch_pkg': 'elasticsearch',
-            'java_pkg': 'java-1.8.0-openjdk'
-        },
-    }),
-    'config': {},
-}, merge=True) %}
+{% set elasticsearch_map = salt['grains.filter_by']({
+    'default': {
+        'pkg': 'elasticsearch',
+        'use_repo': True,
+    },
+},
+merge=salt['pillar.get']('elasticsearch', {}),
+default='default')
+%}

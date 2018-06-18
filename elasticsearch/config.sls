@@ -1,16 +1,17 @@
 include:
   - elasticsearch.pkg
 
+{%- if salt['pillar.get']('elasticsearch:config') %}
 elasticsearch_cfg:
-  file.managed:
+  file.serialize:
     - name: /etc/elasticsearch/elasticsearch.yml
-    - source: salt://elasticsearch/files/elasticsearch.yml
-    - template: jinja
-    - mode: 750
+    - dataset_pillar: elasticsearch:config
+    - formatter: yaml
     - user: root
     - group: elasticsearch
     - require:
       - sls: elasticsearch.pkg
+{%- endif %}
 
 {% set data_dir = salt['pillar.get']('elasticsearch:config:path.data') %}
 {% set log_dir = salt['pillar.get']('elasticsearch:config:path.logs') %}
@@ -23,5 +24,7 @@ elasticsearch_cfg:
     - group: elasticsearch
     - mode: 0700
     - makedirs: True
+    - require_in:
+      - service: elasticsearch
 {% endif %}
 {% endfor %}
