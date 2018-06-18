@@ -16,4 +16,4 @@ elasticsearch_pkg:
     {% endif %}
     - require:
       - sls: elasticsearch.repo
-      - pkg: openjdk8_pkg
+      - pkg: openjdk-8-jre
